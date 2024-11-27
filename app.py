@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Obtén la ruta del modelo
-   MODEL_PATH = os.environ.get('MODEL_PATH', '/app/backend/models/mammovision.pt')
+MODEL_PATH = os.environ.get('MODEL_PATH', '/app/models/mammovision.pt')
 # Verifica si el archivo existe
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"No se encontró el modelo en: {MODEL_PATH}")

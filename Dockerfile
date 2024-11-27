@@ -19,9 +19,9 @@ RUN pip install --upgrade pip
 # Instalar las dependencias del archivo requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el resto de los archivos de la aplicación
+# Copiar todo el contenido
 COPY . .
-COPY backend/models/mammovision.pt /app/backend/models/
+
 # Establecer el comando por defecto para ejecutar la aplicación
 # Cambia "app:app" por tu punto de entrada si usas Flask o algún otro framework
 CMD ["python", "app.py"]

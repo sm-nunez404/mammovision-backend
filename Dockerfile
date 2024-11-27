@@ -14,13 +14,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Actualizar pip antes de instalar dependencias
-RUN python -m pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # Instalar las dependencias del archivo requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto de los archivos de la aplicación
 COPY . .
+COPY backend/models/mammovision.pt /app/models/
 
 # Establecer el comando por defecto para ejecutar la aplicación
 # Cambia "app:app" por tu punto de entrada si usas Flask o algún otro framework

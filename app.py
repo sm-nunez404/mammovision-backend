@@ -6,21 +6,21 @@ from models.model_handler import MammoVisionModel
 app = Flask(__name__)
 CORS(app)
 
+# Obtén la ruta del modelo
+MODEL_PATH = os.environ.get('MODEL_PATH', 'backend/models/mammovision.pt')
+
+# Verifica si el archivo existe
+if not os.path.exists(MODEL_PATH):
+    raise FileNotFoundError(f"No se encontró el modelo en: {MODEL_PATH}")
+
+model = MammoVisionModel(MODEL_PATH)
+
 # Cargar las variables de entorno
-MODEL_PATH = os.getenv('MODEL_PATH')
 UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
 
 # Configurar la carpeta de uploads
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
-
-# Cargar el modelo
-try:
-    model = MammoVisionModel(MODEL_PATH)
-    print("Modelo cargado exitosamente")
-except Exception as e:
-    print(f"Error al cargar el modelo: {str(e)}")
-    raise
 
 @app.route('/')
 def home():

@@ -9,20 +9,12 @@ import cv2
 
 class MammoVisionModel:
     def __init__(self, model_path):
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        print(f"Usando dispositivo: {self.device}")
-        
         self.model_path = model_path
-        
         if not os.path.exists(self.model_path):
             raise FileNotFoundError(f"No se encontró el modelo en: {self.model_path}")
-        
-        try:
-            self.model = self.load_model()
-            print("Modelo cargado exitosamente")
-        except Exception as e:
-            print(f"Error al cargar el modelo: {str(e)}")
-            raise
+        self.model = YOLO(self.model_path)
+        print(f"Modelo cargado desde: {self.model_path}")
+
 
     def load_model(self):
         try:

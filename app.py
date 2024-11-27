@@ -1,20 +1,22 @@
 import os
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-import torch
 from models.model_handler import MammoVisionModel
 
 app = Flask(__name__)
 CORS(app)
 
+# Cargar las variables de entorno
+MODEL_PATH = os.getenv('MODEL_PATH')
+UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
+
 # Configurar la carpeta de uploads
-UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'data', 'uploads')
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 # Cargar el modelo
 try:
-    model = MammoVisionModel()
+    model = MammoVisionModel(MODEL_PATH)
     print("Modelo cargado exitosamente")
 except Exception as e:
     print(f"Error al cargar el modelo: {str(e)}")

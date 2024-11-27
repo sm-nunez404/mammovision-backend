@@ -8,13 +8,11 @@ import io
 import cv2
 
 class MammoVisionModel:
-    def __init__(self):
+    def __init__(self, model_path):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         print(f"Usando dispositivo: {self.device}")
         
-        # Obtener la ruta absoluta al modelo
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        self.model_path = os.path.join(current_dir, 'mammovision.pt')
+        self.model_path = model_path
         
         if not os.path.exists(self.model_path):
             raise FileNotFoundError(f"No se encontró el modelo en: {self.model_path}")

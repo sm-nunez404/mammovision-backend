@@ -52,7 +52,7 @@ dist/
 Thumbs.db
 
 # Archivos de modelo y datos
-#*.pt
+
 *.pth
 *.h5
 *.hdf5

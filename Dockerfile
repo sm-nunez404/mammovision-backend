@@ -9,11 +9,9 @@ COPY requirements.txt .
 
 # Actualizar pip y herramientas esenciales del sistema
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    libffi-dev \
-    musl-dev \
-    build-essential && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Actualizar pip antes de instalar dependencias
 RUN python -m pip install --upgrade pip

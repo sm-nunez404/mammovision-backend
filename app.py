@@ -4,7 +4,7 @@ from flask_cors import CORS
 from models.model_handler import MammoVisionModel
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/predict": {"origins": "https://mammovision-frontend.vercel.app"}})
 
 # Obtén la ruta del modelo
 MODEL_PATH = os.environ.get('MODEL_PATH', '/app/models/mammovision.pt')

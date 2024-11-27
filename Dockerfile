@@ -26,4 +26,7 @@ COPY . .
 
 # Establecer el comando por defecto para ejecutar la aplicación
 # Cambia "app:app" por tu punto de entrada si usas Flask o algún otro framework
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["python", "app.py"]
+
+# Exponer el puerto 10000
+EXPOSE 10000

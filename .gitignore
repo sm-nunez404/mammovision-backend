@@ -1,0 +1,109 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+out/
+.nuxt
+dist/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Archivos de modelo y datos
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.pkl
+*.model
+models/*.pt
+models/*.pth
+data/uploads/*
+!data/uploads/.gitkeep
+
+# Logs y resultados
+logs/
+*.log
+results/
+runs/
+
+# Archivos temporales
+temp/
+tmp/
+.temp/
+.tmp/
+
+# Archivos de configuración local
+config.local.py
+settings.local.js
+
+# Archivos de caché
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Archivos de sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Archivos específicos del proyecto
+*.mammogram
+*.dcm
+*.dicom
+
+# Directorios de datos sensibles
+private/
+confidential/
+
+# Mantener directorios vacíos necesarios
+!.gitkeep

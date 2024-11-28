@@ -57,10 +57,25 @@ def predict():
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
+
+
+
+
 # Agregar ruta para servir las imágenes
 @app.route('/uploads/<path:filename>')
 def serve_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')  # O especifica tu origen
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    return response
+
+
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))

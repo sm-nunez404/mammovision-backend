@@ -66,7 +66,9 @@ def predict():
 def serve_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
-
+@app.route('/predict', methods=['OPTIONS'])
+def options():
+    return '', 200  # Respuesta vacía para OPTIONS
 
 @app.after_request
 def add_cors_headers(response):

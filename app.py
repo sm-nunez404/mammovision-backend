@@ -4,10 +4,10 @@ from flask_cors import CORS
 from models.model_handler import MammoVisionModel
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "https://mammovision-frontend.vercel.app"}})
+CORS(app, resources={r"/predict": {"origins": ["https://mammovision-frontend.vercel.app", "http://localhost:3000"]}})
 
 # Obtén la ruta del modelo
-MODEL_PATH = os.environ.get('MODEL_PATH', '/app/models/mammovision.pt')
+MODEL_PATH = os.environ.get('MODEL_PATH', '/home/mauri/Documentos/ai-projects/mammovision/mammovision-backend/models/mammovision.pt')
 # Verifica si el archivo existe
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"No se encontró el modelo en: {MODEL_PATH}")
@@ -15,11 +15,14 @@ if not os.path.exists(MODEL_PATH):
 model = MammoVisionModel(MODEL_PATH)
 
 # Cargar las variables de entorno
-UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
+#UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
+UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
 
 # Configurar la carpeta de uploads
 if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    # Asegurar permisos de escritura
+    os.chmod(UPLOAD_FOLDER, 0o755)
 
 @app.route('/')
 def home():
@@ -45,8 +48,8 @@ def predict():
             
             # Construir URLs completas
             base_url = request.host_url.rstrip('/') + '/uploads/'
-            image_url = base_url + file.filename
-            processed_image_url = base_url + processed_filename
+            image_url = base_url + os.path.basename(filename)
+            processed_image_url = base_url + 'processed_' + os.path.basename(filename)
             
             return jsonify({
                 'status': 'success',

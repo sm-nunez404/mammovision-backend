@@ -135,9 +135,7 @@ class MammoVisionModel:
             # Guardar imagen procesada
             processed_filename = 'processed_' + os.path.basename(image_path)
             processed_path = os.path.join(
-                os.path.dirname(os.path.dirname(image_path)), 
-                'data', 
-                'uploads',
+                os.path.dirname(image_path),
                 processed_filename
             )
             cv2.imwrite(processed_path, annotated_image)

@@ -1,7 +1,7 @@
 # MammoVision: Detección Inteligente de Cáncer de Mama mediante Deep Learning
 
 <div align="center">
-  <img src="assets/logo.png" alt="MammoVision Logo" width="200"/>
+  <img src="assets//images/logo.png" alt="MammoVision Logo" width="200"/>
   <br>
   <p>
     <a href="#descripción">Descripción</a> •
@@ -9,39 +9,44 @@
     <a href="#instalación">Instalación</a> •
     <a href="#uso">Uso</a> •
     <a href="#tecnologías">Tecnologías</a> •
-    <a href="#resultados">Resultados</a>
+    <a href="#equipo">Equipo</a>
   </p>
 </div>
 
+## 🏫 Institución
+
+**Universidad Autónoma Gabriel René Moreno**  
+Facultad de Ingeniería en Ciencias de la Computación y Telecomunicaciones (FICCT)  
+Feria Facultativa de Proyectos de Investigación  
+Gestión 2-2024
+
 ## 📋 Descripción
 
-MammoVision es un sistema de detección inteligente de cáncer de mama que utiliza técnicas avanzadas de Deep Learning, específicamente la arquitectura YOLOv11-seg, para identificar y segmentar lesiones mamarias en imágenes mamográficas. El sistema es capaz de clasificar las lesiones como benignas o malignas con alta precisión, proporcionando una herramienta valiosa para el diagnóstico temprano.
+MammoVision es un sistema de detección inteligente que utiliza YOLOv11-seg para identificar y segmentar lesiones mamarias. El backend proporciona una API robusta para el procesamiento de imágenes mamográficas y la generación de predicciones precisas.
 
 ### 🎯 Objetivos
 
-- Detección y segmentación precisa de lesiones mamarias
-- Clasificación entre lesiones benignas y malignas
-- Reducción de falsos positivos y negativos
-- Apoyo en el diagnóstico médico temprano
+- Procesamiento eficiente de imágenes mamográficas
+- API REST para integración con frontend
+- Optimización de inferencias con GPU
+- Gestión de múltiples formatos de imagen
 
 ## ✨ Características
 
-- **Detección en Tiempo Real**: Análisis rápido y eficiente de imágenes mamográficas
-- **Segmentación Precisa**: Delimitación exacta de áreas sospechosas
-- **Interfaz Web Intuitiva**: Fácil de usar para profesionales médicos
-- **Resultados Detallados**: Información completa sobre las detecciones
-- **Soporte Multi-formato**: Compatible con DICOM, PNG, JPEG y TIFF
+- **Procesamiento Rápido**: Análisis optimizado con CUDA
+- **API RESTful**: Endpoints documentados con Swagger
+- **Segmentación Precisa**: YOLOv11-seg para detección exacta
+- **Cache Inteligente**: Optimización de recursos y respuestas
+- **Validación Robusta**: Verificación de formatos y calidad
 
 ## 🚀 Instalación
 
 ### Prerrequisitos
 
 
-
 ```bash
 Python 3.10 o superior
 CUDA 12.6 (para GPU)
-Node.js 18.0 o superior
 ```
 
 
@@ -55,122 +60,92 @@ Node.js 18.0 o superior
 
 ```bash
 git clone https://github.com/sm-nunez404/mammovision.git
-cd mammovision
+cd mammovision/mammovision-backend
 ```
 
-2. Instalar dependencias del backend:
+2. Crear y activar entorno virtual::
 
 
 ```bash
-cd backend
 python -m venv venv
 source venv/bin/activate # En Windows: venv\Scripts\activate
-pip install -r requirements.txt
 ```
 
 
 
-3. Instalar dependencias del frontend:
-
+3. Instalar dependencias:
 
 
 ```bash
-cd frontend
-npm install
+pip install -r requirements.txt
 ```
 
 
 
 ## 💻 Uso
 
-### Iniciar el Backend
-
+1. Iniciar el servidor:
 
 
 
 ```bash
-cd backend
 python app.py
 ```
 
+El servidor estará disponible en `http://localhost:10000`
 
-### Iniciar el Frontend
+### Endpoints Principales
 
-
-```bash
-cd frontend
-npm run dev
-```
-
-
-
-La aplicación web estará disponible en `http://localhost:3000`
-El servidor del backend estará disponible en `http://localhost:5000`
-
+- `POST /api/predict`: Análisis de imagen mamográfica
+- `GET /api/health`: Estado del servidor
+- `GET /api/docs`: Documentación Swagger
 
 ## 🛠️ Tecnologías
 
-- **Backend**:
-  - Python
-  - Flask
-  - YOLOv11-seg
-  - OpenCV
-  - PyTorch
+- **Framework**: Flask
+- **ML/DL**: PyTorch, YOLOv11-seg
+- **Procesamiento**: OpenCV, NumPy
+- **GPU**: CUDA 12.6
+- **Documentación**: Swagger/OpenAPI
 
-- **Frontend**:
-  - Next.js
-  - React
-  - TailwindCSS
-  - TypeScript
+## 📊 Métricas de Rendimiento
 
-## 📊 Resultados
-
-### Métricas de Rendimiento
-
+### Modelo YOLOv11-seg
 - mAP@50: 0.485
 - mAP@[50:95]: 0.315
 - Precisión (Maligno): 0.545
 - Recall (Maligno): 0.571
 
-### Visualización de Resultados
-
-<div align="center">
-  <img src="assets/results.png" alt="Resultados de Detección" width="600"/>
-</div>
+### Rendimiento API
+- Tiempo promedio de respuesta: ~1.2s
+- Throughput máximo: 50 req/min
+- Uso de memoria: 2-4GB
 
 ## 📚 Dataset
 
-El modelo fue entrenado utilizando el conjunto de datos CBIS-DDSM, que contiene:
+El modelo fue entrenado con CBIS-DDSM:
 - 2,825 imágenes mamográficas
-- Anotaciones detalladas de lesiones
-- Clasificación benigna/maligna
+- Anotaciones detalladas
 - Segmentación manual por expertos
 
-## 🤝 Contribuir
+## 👥 Equipo
 
-1. Fork el proyecto
-2. Crea tu rama de características (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+### Autores
+- **Mauricio Núñez** - Desarrollo Principal - [@sm-nunez404](https://github.com/sm-nunez404) - [LinkedIn](https://www.linkedin.com/in/smnunez404/)
+- **Silvia Colque** - Investigación y Desarrollo - [@silvia-colque](https://github.com/silvia-colque) - [LinkedIn](https://www.linkedin.com/in/colque-silvia-3825902b3/)
+- **Keila Rojas** - Machine Learning - [@keila-rojas](https://github.com/keila-rojas) - [LinkedIn](https://www.linkedin.com/in/keila-rojas-213161329)
+- **Elias Puma** - Frontend - [@elias-puma](https://github.com/elias-puma) - [LinkedIn](https://www.linkedin.com/in/elias-puma-3ab976281)
+
+### Docente Tutor
+- **Ing. Valentin Victor Flores Guzman**
 
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
 
-## 👥 Autores
-
-- **Mauricio Núñez** - *Desarrollo Principal* - [sm-nunez404](https://github.com/sm-nunez404)
-
-## 📧 Contacto
-
-Para preguntas y soporte, por favor contacta a:
-- Email: [smnunez404@gmail.com]
-- GitHub: [@sm-nunez404](https://github.com/sm-nunez404)
-
 ## 🙏 Agradecimientos
 
-- CBIS-DDSM por proporcionar el conjunto de datos
+- CBIS-DDSM por el dataset
 - Ultralytics por YOLOv11
 - La comunidad de código abierto
 
@@ -179,28 +154,3 @@ Para preguntas y soporte, por favor contacta a:
 <div align="center">
   Desarrollado con ❤️ para la detección temprana del cáncer de mama
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
